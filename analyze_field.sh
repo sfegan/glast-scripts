@@ -2,7 +2,7 @@
 
 # analyze_field.sh - run GLAST analysis on a certain field of view
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-15
-# $Id: analyze_field.sh 8668 2015-06-15 11:57:49Z sfegan $
+# $Id: analyze_field.sh 9749 2016-07-28 09:31:41Z sfegan $
 
 # Changelog
 #
@@ -29,6 +29,7 @@
 # 2011-09-22: Set diffuse source names in model to match FT1 diffuse columns
 # 2011-11-23: Add option for TSTART=FIRSTFULLMOON and TEND=MOONPERIOD
 # 2015-05-28: Update for Pass 8
+# 2016-07-28: Add GTLIKESKIP option to skip gtlike and remaining steps
 
 trap exit SIGUSR1
 trap exit SIGUSR2
@@ -37,7 +38,7 @@ ECHO=echo
 CAT=cat
 
 $ECHO '# ***************************************************************************'
-$ECHO '# * $Id: analyze_field.sh 8668 2015-06-15 11:57:49Z sfegan $'
+$ECHO '# * $Id: analyze_field.sh 9749 2016-07-28 09:31:41Z sfegan $'
 $ECHO "# * Command line:  $0" "$@"
 $ECHO '# * Start date:  ' "`date`"
 $ECHO '# * Using gtlike:' `which gtlike`
@@ -108,7 +109,7 @@ then
   then
     EVCLASS="512"
   elif test "$CLASS" == "CLEAN"
-  then  
+  then
     EVCLASS="256"
   elif test "$CLASS" == "SOURCE"
   then
@@ -216,14 +217,14 @@ if test "$DIFFUSEGALACTICMODEL" == ""
 then
   DIFFUSEGALACTICMODEL=$GLAST_EXT/diffuseModels/v5r0/gll_iem_v06.fits
 else
-  MMGALNAME="iso_user"  
+  MMGALNAME="iso_user"
 fi
 
 if test "$ISOTROPICMODEL" == ""
 then
   ISOTROPICMODEL=$GLAST_EXT/diffuseModels/v5r0/iso_${IRF}${EVTYPE_ISO_FILE}_v06.txt
 else
-  MMDISONAME="iso_user"  
+  MMDISONAME="iso_user"
 fi
 
 if test "$COLLISIONAVOID" == ""; then COLLISIONAVOID=0.3; fi
@@ -249,6 +250,7 @@ fi
 if test "$SIM" == "";            then SIM=FALSE; fi
 if test "$ANALYSIS" == "";       then ANALYSIS=UNBINNED; fi
 if test "$SIMIRF" == "";         then SIMIRF="$IRF"; fi
+if test "$GTLIKESKIP" == "";     then GTLIKESKIP=FALSE; fi
 if test "$GTLIKEONLY" == "";     then GTLIKEONLY=FALSE; fi
 if test "$FORCEDIFFRSP" == "";   then FORCEDIFFRSP=FALSE; fi
 if test "$COMPUTEPTSRCMAP" = ""; then COMPUTEPTSRCMAP=TRUE; fi
@@ -297,6 +299,7 @@ fi
 SIM=`echo $SIM | tr '[:lower:]' '[:upper:]'`
 ANALYSIS=`echo $ANALYSIS | tr '[:lower:]' '[:upper:]'`
 GTLIKEONLY=`echo $GTLIKEONLY | tr '[:lower:]' '[:upper:]'`
+GTLIKESKIP=`echo $GTLIKESKIP | tr '[:lower:]' '[:upper:]'`
 FORCEDIFFRSP=`echo $FORCEDIFFRSP | tr '[:lower:]' '[:upper:]'`
 COMPUTEPTSRCMAP=`echo $COMPUTEPTSRCMAP | tr '[:lower:]' '[:upper:]'`
 ROICUT=`echo $ROICUT | tr '[:lower:]' '[:upper:]'`
@@ -690,7 +693,7 @@ else
   $ECHO '# * 8 - Compute the diffuse response - GTDIFFRP'
   $ECHO '# *****************************************************************************'
   CMD="gtdiffrsp evfile=${NAME}_ev_roi.fits scfile=$FT2 srcmdl=${NAME}_model.xml irfs=$IRF convert=yes"
-  if test "$FORCEDIFFRSP" == "TRUE"  
+  if test "$FORCEDIFFRSP" == "TRUE"
   then
     CMD="$CMD clobber=yes"
   fi
@@ -710,65 +713,73 @@ else
 fi
 CMD="gtlike $GTLIKEOPT irfs=$IRF expcube=${NAME}_expCube.fits srcmdl=${NAME}_model.xml sfile=${NAME}_fitmodel.xml results=${NAME}_results.dat specfile=${NAME}_counts_spectra.fits optimizer=$OPT ftol=$TOL toltype=ABS tsmin=no chatter=3"
 $ECHO $CMD
-if test -f ${NAME}_fitmodel.xml -a "$REUSEFIT" == "TRUE"
+if test "$GTLIKESKIP" \!= "TRUE"
 then
-  echo "Skipping"
-else
-  $TRUN $CMD
-fi
-
-if test "$GTLIKEONLY" \!= "TRUE"
-then
-  $ECHO
-  $ECHO '# *****************************************************************************'
-  $ECHO '# * 10 - Binned source maps - GTSRCMAPS'
-  $ECHO '# *****************************************************************************'
-  if test "$ANALYSIS" == "BINNED"
+  if test -f ${NAME}_fitmodel.xml -a "$REUSEFIT" == "TRUE"
   then
-    $ECHO "Already completed in BINNED analysis mode"
+    echo "Skipping"
   else
-    CMD="gtsrcmaps scfile=$FT2 expcube=${NAME}_expCube.fits cmap=${NAME}_ccube.fits srcmdl=${NAME}_fitmodel.xml bexpmap=${NAME}_binExpMap.fits outfile=${NAME}_srcMaps.fits irfs=$IRF"
-    $ECHO $CMD
     $TRUN $CMD
   fi
-
-  $ECHO
-  $ECHO '# *****************************************************************************'
-  $ECHO '# * 11 - Background maps - GTMODEL'
-  $ECHO '# *****************************************************************************'
-  CMD="gtmodel srcmaps=${NAME}_srcMaps.fits srcmdl=${NAME}_fitmodel.xml outfile=${NAME}_modelmap.fits irfs=$IRF expcube=${NAME}_expCube.fits bexpmap=${NAME}_binExpMap.fits"
-  $ECHO $CMD
-  $TRUN $CMD
-  $RUN rm -f residualmap.fits
-  CMD="farith ${NAME}_map.fits ${NAME}_modelmap.fits residualmap.fits SUB"
-  $ECHO $CMD
-  $RUN $CMD
-  $RUN mv residualmap.fits ${NAME}_residualmap.fits
+else
+  echo "Skipping as requested"
 fi
 
-if test "$FINDSRC" \!= ""; 
+if test "$GTLIKESKIP" \!= "TRUE"
 then
-  $ECHO
-  $ECHO '# *****************************************************************************'
-  $ECHO '# * 12 - Find source - GTFINDSRC'
-  $ECHO '# *****************************************************************************'
-  if test "$ANALYSIS" == "BINNED"
+  if test "$GTLIKEONLY" \!= "TRUE"
   then
     $ECHO
-    $ECHO "GTFINDSRC is incompatible with ${ANALYSIS} analysis ... skipping"
-  else
-    for target in `echo $FINDSRC | tr ',' ' '`
-    do
-      if test "$target" == "-"; then target="$NAME"; fi
-      $ECHO
-      $ECHO '# -------------------------------------------'
-      $ECHO "# TARGET: $target"
-      $ECHO '# -------------------------------------------'
-
-      CMD="gtfindsrc evfile=${NAME}_ev_roi.fits scfile=$FT2 outfile=${NAME}_findSrc_${target}.out irfs=$IRF expcube=${NAME}_expCube.fits expmap=${NAME}_expMap.fits srcmdl=${NAME}_fitmodel.xml target=$target optimizer=$OPT ftol=$FINDSRCLIKETOL atol=$FINDSRCPOSNTOL toltype=ABS chatter=3"
+    $ECHO '# *****************************************************************************'
+    $ECHO '# * 10 - Binned source maps - GTSRCMAPS'
+    $ECHO '# *****************************************************************************'
+    if test "$ANALYSIS" == "BINNED"
+    then
+      $ECHO "Already completed in BINNED analysis mode"
+    else
+      CMD="gtsrcmaps scfile=$FT2 expcube=${NAME}_expCube.fits cmap=${NAME}_ccube.fits srcmdl=${NAME}_fitmodel.xml bexpmap=${NAME}_binExpMap.fits outfile=${NAME}_srcMaps.fits irfs=$IRF"
       $ECHO $CMD
       $TRUN $CMD
-    done
+    fi
+
+    $ECHO
+    $ECHO '# *****************************************************************************'
+    $ECHO '# * 11 - Background maps - GTMODEL'
+    $ECHO '# *****************************************************************************'
+    CMD="gtmodel srcmaps=${NAME}_srcMaps.fits srcmdl=${NAME}_fitmodel.xml outfile=${NAME}_modelmap.fits irfs=$IRF expcube=${NAME}_expCube.fits bexpmap=${NAME}_binExpMap.fits"
+    $ECHO $CMD
+    $TRUN $CMD
+    $RUN rm -f residualmap.fits
+    CMD="farith ${NAME}_map.fits ${NAME}_modelmap.fits residualmap.fits SUB"
+    $ECHO $CMD
+    $RUN $CMD
+    $RUN mv residualmap.fits ${NAME}_residualmap.fits
+  fi
+
+  if test "$FINDSRC" \!= "";
+  then
+    $ECHO
+    $ECHO '# *****************************************************************************'
+    $ECHO '# * 12 - Find source - GTFINDSRC'
+    $ECHO '# *****************************************************************************'
+    if test "$ANALYSIS" == "BINNED"
+    then
+      $ECHO
+      $ECHO "GTFINDSRC is incompatible with ${ANALYSIS} analysis ... skipping"
+    else
+      for target in `echo $FINDSRC | tr ',' ' '`
+      do
+        if test "$target" == "-"; then target="$NAME"; fi
+        $ECHO
+        $ECHO '# -------------------------------------------'
+        $ECHO "# TARGET: $target"
+        $ECHO '# -------------------------------------------'
+
+        CMD="gtfindsrc evfile=${NAME}_ev_roi.fits scfile=$FT2 outfile=${NAME}_findSrc_${target}.out irfs=$IRF expcube=${NAME}_expCube.fits expmap=${NAME}_expMap.fits srcmdl=${NAME}_fitmodel.xml target=$target optimizer=$OPT ftol=$FINDSRCLIKETOL atol=$FINDSRCPOSNTOL toltype=ABS chatter=3"
+        $ECHO $CMD
+        $TRUN $CMD
+      done
+    fi
   fi
 fi
 

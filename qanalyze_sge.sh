@@ -94,7 +94,7 @@ if test "$TIMELIMIT"   == "MAXhuge"; then TIMELIMIT=48:00:00; fi
 if test "$MEMLIMIT"    == "MAXhuge"; then MEMLIMIT=110G; fi
 if test "$SCRLIMIT"    == "MAXhuge"; then SCRLIMIT=30G; fi
 
-# Derived from "qconf -sq longlived"
+# Derived from "qconf -sq longlasting"
 if test "$TIMELIMIT"   == "MAXlonglasting"; then TIMELIMIT=168:00:00; fi
 if test "$MEMLIMIT"    == "MAXlonglasting"; then MEMLIMIT=6G; fi
 if test "$SCRLIMIT"    == "MAXlonglasting"; then SCRLIMIT=30G; fi

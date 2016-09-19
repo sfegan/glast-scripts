@@ -90,14 +90,14 @@ if test "$MEMLIMIT"    == "MAXlong"; then MEMLIMIT=4G; fi
 if test "$SCRLIMIT"    == "MAXlong"; then SCRLIMIT=30G; fi
 
 # Derived from "qconf -sq huge"
-if test "$TIMELIMIT"   == "MAXlong"; then TIMELIMIT=48:00:00; fi
-if test "$MEMLIMIT"    == "MAXlong"; then MEMLIMIT=110G; fi
-if test "$SCRLIMIT"    == "MAXlong"; then SCRLIMIT=30G; fi
+if test "$TIMELIMIT"   == "MAXhuge"; then TIMELIMIT=48:00:00; fi
+if test "$MEMLIMIT"    == "MAXhuge"; then MEMLIMIT=110G; fi
+if test "$SCRLIMIT"    == "MAXhuge"; then SCRLIMIT=30G; fi
 
 # Derived from "qconf -sq longlived"
-if test "$TIMELIMIT"   == "MAXlong"; then TIMELIMIT=168:00:00; fi
-if test "$MEMLIMIT"    == "MAXlong"; then MEMLIMIT=6G; fi
-if test "$SCRLIMIT"    == "MAXlong"; then SCRLIMIT=30G; fi
+if test "$TIMELIMIT"   == "MAXlonglasting"; then TIMELIMIT=168:00:00; fi
+if test "$MEMLIMIT"    == "MAXlonglasting"; then MEMLIMIT=6G; fi
+if test "$SCRLIMIT"    == "MAXlonglasting"; then SCRLIMIT=30G; fi
 
 OUTDIR=`cd "$CMD_DIR"; /bin/pwd`
 SCRIPTDIR=`dirname $0`

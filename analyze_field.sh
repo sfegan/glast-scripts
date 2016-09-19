@@ -681,7 +681,7 @@ then
   fi
   CMD="gtsrcmaps scfile=$FT2 expcube=${NAME}_expCube.fits cmap=${NAME}_ccube.fits srcmdl=${NAME}_model.xml bexpmap=${NAME}_binExpMap.fits outfile=${NAME}_srcMaps.fits irfs=$IRF ptsrc=${COMPUTEPTSRCMAP}"
   $ECHO $CMD
-  if test -f ${NAME}_fitmodel.xml -a "$REUSEFIT" == "TRUE"
+  if test -f ${NAME}_srcMaps.fits -a "$RESTART" == "TRUE"
   then
     echo "Skipping"
   else

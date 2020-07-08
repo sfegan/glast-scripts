@@ -4,7 +4,7 @@
 #                 - BQS version
 #                 - OBSOLETE, will not be updated after Nov 2011
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-21
-# $Id: qanalyze_bqs.sh 3389 2011-11-22 15:03:45Z sfegan $
+# $Id$
 
 PWD=`/bin/pwd`
 CP='cp -pv'

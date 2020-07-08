@@ -2,7 +2,7 @@
 
 # make_model.py - make a model file from a catalog FITS file - new PY version
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-23
-# $Id: make_model.py 4775 2012-11-16 07:51:09Z sfegan $
+# $Id$
 
 import sys, getopt, subprocess, xml.dom.minidom, math, os, time, math
 

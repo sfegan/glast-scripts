@@ -7,7 +7,7 @@ file IntegralUpperLimits.py
 
 @author Stephen Fegan <sfegan@llr.in2p3.fr>
 
-$Id: IntegralUpperLimit.py 3383 2011-11-17 18:56:47Z sfegan $
+$Id$
 
 See help for IntegralUpperLimits.calc for full details.
 """

@@ -2,7 +2,7 @@
 
 # remove_source.py - remove a source from a model XML file
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-24
-# $Id: remove_source.py 2003 2010-07-28 10:48:28Z sfegan $
+# $Id$
 
 import sys, xml.dom.minidom, getopt, os, time, re
 

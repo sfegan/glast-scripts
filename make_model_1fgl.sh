@@ -2,7 +2,7 @@
 
 # make_model.sh - make a model file from a catalog FITS file
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-15
-# $Id: make_model_1fgl.sh 4775 2012-11-16 07:51:09Z sfegan $
+# $Id$
 
 # Changelog
 #

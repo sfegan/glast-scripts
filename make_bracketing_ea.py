@@ -2,7 +2,7 @@
 
 # make_bracketing_ea.py - modify the EA IRFs
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2011-02-10
-# $Id: make_bracketing_ea.py 6173 2014-02-12 13:03:03Z sfegan $
+# $Id$
 
 import pyfits, sys, math, glob, re
 import array

@@ -3,7 +3,7 @@
 # qanalyze_sge.sh - queue a GLAST analysis run on the Lyon cluster
 #                 - SGE version
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-21
-# $Id: qanalyze.sh 2894 2011-06-07 15:06:43Z sfegan $
+# $Id$
 
 PWD=`/bin/pwd`
 CP='cp -pv'

@@ -2,7 +2,7 @@
 #
 # run_all_diffuse_P7SOURCE_V6.sh - Run P7SOURCE_V6 IRFs
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2010-05-26
-# $Id: run_all_diffuse.sh 1870 2010-06-07 11:30:42Z sfegan $
+# $Id$
 #
 
 IRF=P7SOURCE_V6

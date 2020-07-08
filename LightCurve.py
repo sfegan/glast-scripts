@@ -9,7 +9,7 @@
 
 @date 2010-06-22
 
-$Id: LightCurve.py 8731 2015-06-25 12:34:01Z sfegan $
+$Id$
 """
 
 import glob
@@ -209,7 +209,7 @@ class LightCurve:
     """Class to calculate light curves and variability indexes."""
     def __init__(self, srcName=None, ft2=None, irfs=None, model=None,
                  optimizer="Minuit"):
-        self.ver = "$Id: LightCurve.py 8731 2015-06-25 12:34:01Z sfegan $"
+        self.ver = "$Id$"
         self.lc = []
         if(srcName == None):
             return

@@ -2,7 +2,7 @@
 
 # analyze_field.sh - run GLAST analysis on a certain field of view
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-15
-# $Id: analyze_field.sh 9749 2016-07-28 09:31:41Z sfegan $
+# $Id$
 
 # Changelog
 #
@@ -38,7 +38,7 @@ ECHO=echo
 CAT=cat
 
 $ECHO '# ***************************************************************************'
-$ECHO '# * $Id: analyze_field.sh 9749 2016-07-28 09:31:41Z sfegan $'
+$ECHO '# * $Id$'
 $ECHO "# * Command line:  $0" "$@"
 $ECHO '# * Start date:  ' "`date`"
 $ECHO '# * Using gtlike:' `which gtlike`

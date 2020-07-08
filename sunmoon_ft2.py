@@ -3,7 +3,7 @@
 # sunmoon_ft2.py - Calculate apparent RA and Dec of Sun and Moon correcting
 #                  for parallax of spacecraft in latter case
 # Stephen Fegan - sfegan@llr.in2p3.fr - June 2011
-# $Id: sunmoon_ft2.py 3426 2011-12-02 12:37:33Z sfegan $
+# $Id$
 
 import ephem
 import pyfits

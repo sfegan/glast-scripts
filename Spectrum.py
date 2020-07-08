@@ -9,7 +9,7 @@
 
 @date 2010-06-23
 
-$Id: Spectrum.py 8759 2015-07-03 07:40:19Z sfegan $
+$Id$
 """
 
 import sys
@@ -27,7 +27,7 @@ class Spectrum:
     """Class to calculate spectra."""
     def __init__(self, srcName=None, ft2=None, irfs=None, 
                  model=None, optimizer="Minuit"):
-        self.ver = "$Id: Spectrum.py 8759 2015-07-03 07:40:19Z sfegan $"
+        self.ver = "$Id$"
         self.spectra = []
         if(srcName == None):
             return

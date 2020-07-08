@@ -2,7 +2,7 @@
 
 # qalltevcat.sh - queue GLAST analysis runs for all TeVCat sources at ccin2p3
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-22
-# $Id: qalltevcat.sh 1988 2010-07-21 11:59:29Z sfegan $
+# $Id$
 
 if test "$1" == ""
 then

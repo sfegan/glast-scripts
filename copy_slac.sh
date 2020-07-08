@@ -2,7 +2,7 @@
 
 # copy_slac.sh - copy new data files from SLAC and run diffrsp on them
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-15
-# $Id: copy_slac.sh 1988 2010-07-21 11:59:29Z sfegan $
+# $Id$
 
 if test "$ECHO" == ""; then ECHO= ; fi
 

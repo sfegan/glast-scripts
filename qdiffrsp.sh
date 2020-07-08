@@ -2,7 +2,7 @@
 
 # qdiffrsp.sh - Send a gtdiffrsp job to the batch queue @ ccin2p3
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-17
-# $Id: qdiffrsp.sh 4775 2012-11-16 07:51:09Z sfegan $
+# $Id$
 
 if test "$1" == ""
 then

@@ -2,7 +2,7 @@
 
 # modify_irfs.sh - copy and modify IRFs from the originals
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2011-03-31
-# $Id: modify_irf.sh 2703 2011-03-31 11:31:08Z sfegan $
+# $Id$
 
 STDIR="$1"
 ODIR="$2"

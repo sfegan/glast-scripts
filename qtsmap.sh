@@ -2,7 +2,7 @@
 
 # qtsmap.sh - queue a GLAST TS map analysis run on the Lyon cluster
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2011-02-14
-# $Id: qtsmap.sh 2624 2011-02-28 05:40:04Z sfegan $
+# $Id$
 
 PWD=`/bin/pwd`
 CP='cp -pv'

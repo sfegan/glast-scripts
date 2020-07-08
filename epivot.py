@@ -3,7 +3,7 @@
 # epivot.py - calculate the pivot energy from PL2 fit parameters
 # See: http://tinyurl.com/epivot for further details
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2011-03-31
-# $Id: epivot.py 2708 2011-04-01 11:39:13Z sfegan $
+# $Id$
 
 import math
 import sys

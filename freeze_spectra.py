@@ -2,7 +2,7 @@
 
 # freeze_spectra - freeze spectral parameters in a model file
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2009-02-11
-# $Id: freeze_spectra.py 2003 2010-07-28 10:48:28Z sfegan $
+# $Id$
 
 from ModelManipulator import *
 import sys, getopt

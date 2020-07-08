@@ -2,7 +2,7 @@
 
 # filter_limited_sources - remove sources at limits of spectrum
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2009-02-03
-# $Id: filter_limited_sources.py 2003 2010-07-28 10:48:28Z sfegan $
+# $Id$
 
 from ModelManipulator import *
 import sys

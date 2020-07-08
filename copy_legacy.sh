@@ -2,7 +2,7 @@
 #
 # copy_legacy.sh - Copy GLAST data from NASA "legacy" machine using ftpsync.py
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2009-11-14
-# $Id: copy_legacy.sh 8731 2015-06-25 12:34:01Z sfegan $
+# $Id$
 #
 
 BASEDIR=/sps/hep/glast/data/FSSCWeeklyData

@@ -9,7 +9,7 @@
 
 @date 2011-04-13
 
-$Id: ROILikelihoodOptimizer.py 2795 2011-05-06 14:48:45Z sfegan $
+$Id$
 """
 
 import os.path
@@ -29,7 +29,7 @@ class ROILikelihoodOptimizer:
                  nuisance_npred_frac_max = 0.05,
                  nuisance_soi_sep_min_deg = 5.0,
                  calculate_full_ts_for_all = False):
-        self.ver = "$Id: ROILikelihoodOptimizer.py 2795 2011-05-06 14:48:45Z sfegan $"
+        self.ver = "$Id$"
         self.res = {}
         self._like = like
         self._original_state = LikelihoodState(self._like)

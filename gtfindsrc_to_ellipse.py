@@ -6,7 +6,7 @@
 
 @author Stephen Fegan <sfegan@llr.in2p3.fr>
 
-$Id: gtfindsrc_to_ellipse.py 2003 2010-07-28 10:48:28Z sfegan $
+$Id$
 """
 
 import math

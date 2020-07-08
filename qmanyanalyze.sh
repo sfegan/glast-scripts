@@ -2,7 +2,7 @@
 
 # qmanyanalyze.sh - queue a few GLAST analysis runs on the Lyon cluster
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-10-31
-# $Id: qmanyanalyze.sh 1988 2010-07-21 11:59:29Z sfegan $
+# $Id$
 
 PWD=`/bin/pwd`
 

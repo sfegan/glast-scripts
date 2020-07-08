@@ -2,7 +2,7 @@
 #
 # run_all_diffuse.sh - Run P6V8 IRFs
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2010-05-26
-# $Id: run_all_diffuse.sh 4775 2012-11-16 07:51:09Z sfegan $
+# $Id$
 #
 
 IRF=P6_V8_DIFFUSE

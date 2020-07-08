@@ -2,7 +2,7 @@
 
 # ModelManipulator - make or alter XML model files
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2008-12-28
-# $Id: ModelManipulator.py 2494 2011-02-02 08:55:35Z sfegan $
+# $Id$
 
 import xml.dom.minidom
 from math import log, acos, cos, sin, log10, floor, sqrt, pi, atan2, floor, fabs, pow

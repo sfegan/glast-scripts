@@ -2,7 +2,7 @@
 
 # modelizer.py - program to shamelessly manipulate XML models
 # Stephen Fegan - sfegan@llr.in2p3.fr - 2009-02-12
-# $Id: modelizer.py 2494 2011-02-02 08:55:35Z sfegan $
+# $Id$
 
 from ModelManipulator import *
 import sys, os, getopt
